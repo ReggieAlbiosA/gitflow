@@ -1,4 +1,4 @@
-const { PipelineError } = require('./errors');
+const { PipelineError } = require("./errors");
 
 async function runPipeline(context, steps) {
   let currentContext = { ...context };
@@ -10,16 +10,25 @@ async function runPipeline(context, steps) {
       // Design decision: Step returns a promise that resolves to the new context properties
       // or the modified context itself. To keep it simple, let's assume steps take
       // (context) and return Promise<context>.
-      
+
       const result = await step(currentContext);
-      
-      // If step returns something, we update the context.
-      if (result && typeof result === 'object') {
+
+      // Steps must return an object (or null/undefined to skip updates)
+      // Returning primitives causes silent failures and inconsistent context state
+      if (result !== null && result !== undefined) {
+        if (typeof result !== "object" || Array.isArray(result)) {
+          throw new Error(
+            `Step "${
+              step.name || "anonymous"
+            }" must return an object or null/undefined, ` +
+              `but returned ${typeof result}. This causes context merge failures.`
+          );
+        }
         currentContext = { ...currentContext, ...result };
       }
     } catch (error) {
       throw new PipelineError(
-        `Step failed: ${step.name || 'anonymous'}`,
+        `Step failed: ${step.name || "anonymous"}`,
         step.name,
         error
       );
