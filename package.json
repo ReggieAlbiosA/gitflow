@@ -4,7 +4,8 @@
   "description": "A minimal, framework-agnostic JavaScript library for composable file processing pipelines",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version"
   },
   "keywords": [
     "pipeline",
@@ -13,5 +14,12 @@
     "processing"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  }
 }
