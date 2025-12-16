@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.2 (2025-12-16)
+
+### Bug Fixes
+
+- **pipeline:** fix context merging when steps return non-object values
+  - Prevents silent failures and data loss when steps accidentally return primitives
+  - Adds validation to ensure steps return proper context objects
+  - Fixes production crashes caused by inconsistent context state
+
 ### 0.1.1 (2025-12-16)
 
 ### Features
