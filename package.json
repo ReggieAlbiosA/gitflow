@@ -1,6 +1,6 @@
 {
   "name": "smart-file-pipeline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A minimal, framework-agnostic JavaScript library for composable file processing pipelines",
   "main": "src/index.js",
   "scripts": {
